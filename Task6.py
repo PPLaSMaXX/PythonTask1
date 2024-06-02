@@ -12,7 +12,6 @@ def PoslidovnaPoslidovnist(input):
 
     is_success = False
     series_state = 0
-    i = 0
     series_one_break = 0
     series_zero_break = 0
 
@@ -35,7 +34,6 @@ def PoslidovnaPoslidovnist(input):
             is_success = True
         else:
             is_success = False
-        i += 1
 
     #print(series_zero)
     #print(series_one)
