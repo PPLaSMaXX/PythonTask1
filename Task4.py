@@ -1,5 +1,5 @@
-number = input("input number to calculate\n")
+number = int(input("input number to calculate\n"))
 
-result = int(number) + int(number + number) + int(number + number + number)
+result = number + (number + number) + (number + number + number)
 
 print(result)

@@ -19,3 +19,6 @@ print(my_list)
 
 my_list.sort()
 print(my_list)
+
+my_list.clear()
+print(my_list)
