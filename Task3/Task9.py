@@ -1,7 +1,7 @@
 a, b, c = (input("a: ")), (input("b: ")), (input("c: "))
 
 
-def count_negatives(*numbers):
+def count_integer(*numbers):
   integer_count = 0
 
   for number in numbers:
@@ -13,4 +13,4 @@ def count_negatives(*numbers):
 
   print(f"There are {integer_count} integer numbers among the provided values.")
 
-count_negatives(a, b, c)
+count_integer(a, b, c)

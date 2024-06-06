@@ -1,7 +1,7 @@
 a, b, c = float(input("a: ")), float(input("b: ")), float(input("c: "))
 
 
-def count_negatives(*numbers):
+def count_positive(*numbers):
   positive_count = 0
 
   for number in numbers:
@@ -10,4 +10,4 @@ def count_negatives(*numbers):
 
   print(f"There are {positive_count} positive numbers among the provided values.")
 
-count_negatives(a, b, c)
+count_positive(a, b, c)
