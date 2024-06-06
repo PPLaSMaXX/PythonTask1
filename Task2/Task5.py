@@ -1,4 +1,4 @@
-variable = -10
+variable = int(input())
 
 if variable > 0:
     print("variable is greater than 0")

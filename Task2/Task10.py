@@ -1,6 +1,6 @@
 N = [10, 20, 40, 30, 5, 80, 100]
 
-#min(N)?
+#min(N)
 
 min_value = N[0]
 for i in N:

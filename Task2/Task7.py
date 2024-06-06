@@ -1,4 +1,4 @@
-x, y = 10, 20
+x, y = int(input("x: ")),int(input("y: "))
 result = 0
 if x > y:
     result = x - y

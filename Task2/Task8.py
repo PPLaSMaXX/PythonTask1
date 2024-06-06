@@ -8,11 +8,11 @@ def box_through_door(box:list, door:list):
         return False
 
 
-box = [int(input("Write Box dimensions divided by Enter (A <Enter> B <Enter> C) ")),int(input(" ")),int(input(" "))]
+box = [int(input("Write Box dimensions divided by Enter (A <Enter> B <Enter> C)\nA: ")),int(input("B: ")),int(input("C: "))]
 
 print(box)
 
-door = [int(input("Write Door dimensions divided by Enter (A <Enter> B) ")),int(input(" "))]
+door = [int(input("Write Door dimensions divided by Enter (A <Enter> B)\nA: ")),int(input("B: "))]
 
 print(door)
 
