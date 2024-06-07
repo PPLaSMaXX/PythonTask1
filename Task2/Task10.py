@@ -1,10 +1,9 @@
-N = [10, 20, 40, 30, 5, 80, 100]
+my_list = [float(input("first:")), float(input("second:")), float(input("third:")), float(input("fourth:")), float(input("fifth:")), float(input("sixth:"))]
 
-#min(N)
+result = 0
 
-min_value = N[0]
-for i in N:
-    if i < min_value:
-        min_value = i
+for i in my_list:
+    if i % 5 ==0:
+        result += i
 
-print(min_value," position: ", N.index(min_value))
+print(my_list, "Sum of numbers divisible by 5:", result)

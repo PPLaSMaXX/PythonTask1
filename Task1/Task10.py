@@ -9,6 +9,7 @@ library_user = {
 }
 
 def show_summary():
+    
     print(library_user)
 
 def take_book():
