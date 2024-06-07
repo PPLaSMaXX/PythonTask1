@@ -3,14 +3,13 @@ import time
 
 
 class Player:
-    Name = ""
-    fleet_health_point = 31
-    play_field = [[0 for x in range(10)] for y in range(10)]
-    hit_and_miss_field = [[0 for x in range(10)] for y in range(10)]
-    available_ships = [6, 4, 4, 3, 3, 3, 2, 2, 2, 2]
 
     def __init__(self, name: str):
         self.Name = name
+        self.fleet_health_point = 31
+        self.play_field = [[0 for x in range(10)] for y in range(10)]
+        self.hit_and_miss_field = [[0 for x in range(10)] for y in range(10)]
+        self.available_ships = [6, 4, 4, 3, 3, 3, 2, 2, 2, 2]
 
     def get_play_field(self, x: int, y: int):
         cell = self.play_field[x][y]
@@ -41,6 +40,9 @@ class Player:
                 return "〷"
             case _:
                 return "?"
+
+    def update_play_field(self,x:int,y:int, value):
+        self.play_field[x][y] = value
 
 
 alphabet = "abcdefghij"
@@ -86,7 +88,7 @@ def check_position(i: int, numeric_coordinate: tuple, player: Player):
     check_top = True
     check_bottom = True
     check_left = True
-    check_rigth = True
+    check_right = True
 
     for j in range(i):
         if j + numeric_coordinate[0] + 1 < 10:
@@ -102,15 +104,15 @@ def check_position(i: int, numeric_coordinate: tuple, player: Player):
             check_bottom = False
         if j + numeric_coordinate[1] + 1 < 10:
             if (
-                check_rigth
+                check_right
                 and not player.play_field[numeric_coordinate[0]][
                     numeric_coordinate[1] + j + 1
                 ]
                 == 0
             ):
-                check_rigth = False
+                check_right = False
         else:
-            check_rigth = False
+            check_right = False
         if numeric_coordinate[0] - j - 1 >= 0:
             if (
                 check_top
@@ -136,7 +138,7 @@ def check_position(i: int, numeric_coordinate: tuple, player: Player):
 
     possible_directions = []
 
-    if check_rigth:
+    if check_right:
         possible_directions.append(0)
     if check_bottom:
         possible_directions.append(1)
@@ -168,14 +170,14 @@ def place_ships(player: Player):
                     )
                     break
         print(
-            "Choose direnction in which you want to rotate your ship from avaible(0 - rigth, 1 - down, 2 - left, 3 - up): ",
+            "Choose direction in which you want to rotate your ship from available(0 - right, 1 - down, 2 - left, 3 - up): ",
             possible_directions,
         )
         direction = int(input())
 
         for j in range(i):
             if direction == 0:
-                player.play_field[numeric_coordinate[0]][numeric_coordinate[1] + j] = 1
+                player.update_play_field(numeric_coordinate[0],numeric_coordinate[1] + j, 1)
             if direction == 1:
                 player.play_field[numeric_coordinate[0] + j][numeric_coordinate[1]] = 1
             if direction == 2:
@@ -241,7 +243,7 @@ def place_ships(player: Player):
         draw_player_screen(player)
 
 
-def shoot(player1: Player, player2: Player):
+def shoot(first_player: Player, second_player: Player):
     numeric_coordinate = (0, 0)
 
     while True:
@@ -260,31 +262,32 @@ def shoot(player1: Player, player2: Player):
                 continue
             else:
                 if (
-                    player2.play_field[numeric_coordinate[0]][numeric_coordinate[1]]
+                    second_player.play_field[numeric_coordinate[0]][numeric_coordinate[1]]
                     == 1
                 ):
-                    player2.play_field[numeric_coordinate[0]][numeric_coordinate[1]] = 2
-                    player1.hit_and_miss_field[numeric_coordinate[0]][
+                    second_player.play_field[numeric_coordinate[0]][numeric_coordinate[1]] = 2
+                    first_player.hit_and_miss_field[numeric_coordinate[0]][
                         numeric_coordinate[1]
                     ] = 1
-                    player2.fleet_health_point -= 1
+                    second_player.fleet_health_point -= 1
                     print("HIT!")
                 else:
-                    player2.play_field[numeric_coordinate[0]][numeric_coordinate[1]] = 3
-                    player1.hit_and_miss_field[numeric_coordinate[0]][
+                    second_player.play_field[numeric_coordinate[0]][numeric_coordinate[1]] = 3
+                    first_player.hit_and_miss_field[numeric_coordinate[0]][
                         numeric_coordinate[1]
                     ] = 2
                     print("MISS!")
                 break
 
-    draw_player_screen(player1)
+    draw_player_screen(first_player)
 
-name1 = input("Enter Name of the first player")
-name2 = input("Enter Name of the second player")
+name1 = input("Enter Name of the first player ")
+name2 = input("Enter Name of the second player ")
 print("GOOD LUCK, HAVE FUN")
 time.sleep(1)
-player1 = Player("name1")
-player2 = Player("2MAX")
+os.system("cls")
+player1 = Player(name1)
+player2 = Player(name2)
 draw_player_screen(player1)
 place_ships(player1)
 os.system("cls")
