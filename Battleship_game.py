@@ -41,10 +41,6 @@ class Player:
             case _:
                 return "?"
 
-    def update_play_field(self,x:int,y:int, value):
-        self.play_field[x][y] = value
-
-
 alphabet = "abcdefghij"
 
 
@@ -177,7 +173,7 @@ def place_ships(player: Player):
 
         for j in range(i):
             if direction == 0:
-                player.update_play_field(numeric_coordinate[0],numeric_coordinate[1] + j, 1)
+                player.play_field[numeric_coordinate[0]][numeric_coordinate[1] + j] = 1
             if direction == 1:
                 player.play_field[numeric_coordinate[0] + j][numeric_coordinate[1]] = 1
             if direction == 2:
@@ -262,17 +258,23 @@ def shoot(first_player: Player, second_player: Player):
                 continue
             else:
                 if (
-                    second_player.play_field[numeric_coordinate[0]][numeric_coordinate[1]]
+                    second_player.play_field[numeric_coordinate[0]][
+                        numeric_coordinate[1]
+                    ]
                     == 1
                 ):
-                    second_player.play_field[numeric_coordinate[0]][numeric_coordinate[1]] = 2
+                    second_player.play_field[numeric_coordinate[0]][
+                        numeric_coordinate[1]
+                    ] = 2
                     first_player.hit_and_miss_field[numeric_coordinate[0]][
                         numeric_coordinate[1]
                     ] = 1
                     second_player.fleet_health_point -= 1
                     print("HIT!")
                 else:
-                    second_player.play_field[numeric_coordinate[0]][numeric_coordinate[1]] = 3
+                    second_player.play_field[numeric_coordinate[0]][
+                        numeric_coordinate[1]
+                    ] = 3
                     first_player.hit_and_miss_field[numeric_coordinate[0]][
                         numeric_coordinate[1]
                     ] = 2
@@ -280,6 +282,7 @@ def shoot(first_player: Player, second_player: Player):
                 break
 
     draw_player_screen(first_player)
+
 
 name1 = input("Enter Name of the first player ")
 name2 = input("Enter Name of the second player ")
@@ -304,7 +307,7 @@ while player1.fleet_health_point != 0 or player2.fleet_health_point != 0:
 
     draw_player_screen(player1)
     shoot(player1, player2)
-    if(player2.fleet_health_point == 0):
+    if player2.fleet_health_point == 0:
         break
     os.system("cls")
     input(
@@ -314,7 +317,7 @@ while player1.fleet_health_point != 0 or player2.fleet_health_point != 0:
     os.system("cls")
     draw_player_screen(player2)
     shoot(player2, player1)
-    if(player1.fleet_health_point == 0):
+    if player1.fleet_health_point == 0:
         break
     os.system("cls")
     input(
@@ -323,4 +326,11 @@ while player1.fleet_health_point != 0 or player2.fleet_health_point != 0:
     time.sleep(5)
     os.system("cls")
 
-print("GOOD GAME!!!! VICTORY FOR ", player1.Name if player1.fleet_health_point > player2.fleet_health_point else player2.Name)
+print(
+    "GOOD GAME!!!! VICTORY FOR ",
+    (
+        player1.Name
+        if player1.fleet_health_point > player2.fleet_health_point
+        else player2.Name
+    ),
+)
