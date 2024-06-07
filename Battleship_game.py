@@ -309,7 +309,6 @@ while player1.fleet_health_point != 0 or player2.fleet_health_point != 0:
     shoot(player1, player2)
     if player2.fleet_health_point == 0:
         break
-    os.system("cls")
     input(
         "Press ENTER to give control to other player, his playboard will be shown in 5 second after pressing"
     )
@@ -319,7 +318,6 @@ while player1.fleet_health_point != 0 or player2.fleet_health_point != 0:
     shoot(player2, player1)
     if player1.fleet_health_point == 0:
         break
-    os.system("cls")
     input(
         "Press ANY BUTTON to give control to other player, his playboard will be shown in 5 second"
     )
