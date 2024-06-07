@@ -243,7 +243,7 @@ def shoot(first_player: Player, second_player: Player):
     numeric_coordinate = (0, 0)
 
     while True:
-        coordinate = input("Enter you coordinate (for e.g. A0, B7, etc)")
+        coordinate = input("Enter coordinate that you wanna to attack (for e.g. A0, B7, etc)")
         if len(coordinate) != 2:
             print("incorrect input!")
             continue
